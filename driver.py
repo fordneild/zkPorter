@@ -51,8 +51,11 @@ if __name__ == "__main__":
     for i in range(NUM_ROLLUP_ACCOUNTS):
         rollupAcounts.append(Account("rollup" + str(i), isPorter=False))
     # simulate just roll up for 50 txs
-    simulateRollup(porterAccounts, rollupAcounts, 50, 0, 0)
-    # simulate combo for 50 txs
-    simulateRollup(porterAccounts, rollupAcounts, 50, .5, .5)
-    # simulate just porter for 50 txs
-    simulateRollup(porterAccounts, rollupAcounts, 500, 1, 1)
+    simulateRollup(porterAccounts, rollupAcounts, 5000, 0, 0)
+    simulateRollup(porterAccounts, rollupAcounts, 5000, .2, .2)
+    simulateRollup(porterAccounts, rollupAcounts, 5000, .5, .5)
+    simulateRollup(porterAccounts, rollupAcounts, 5000, .7, .7)
+    simulateRollup(porterAccounts, rollupAcounts, 5000, .9, .9)
+    simulateRollup(porterAccounts, rollupAcounts, 5000, .95, .95)
+    simulateRollup(porterAccounts, rollupAcounts, 5000, .99, .99)
+    simulateRollup(porterAccounts, rollupAcounts, 5000, 1, 1)
