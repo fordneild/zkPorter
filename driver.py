@@ -58,4 +58,8 @@ if __name__ == "__main__":
     simulateRollup(porterAccounts, rollupAcounts, 5000, .9, .9)
     simulateRollup(porterAccounts, rollupAcounts, 5000, .95, .95)
     simulateRollup(porterAccounts, rollupAcounts, 5000, .99, .99)
+    simulateRollup(porterAccounts, rollupAcounts, 5000, .995, .995)
     simulateRollup(porterAccounts, rollupAcounts, 5000, 1, 1)
+
+    # P(A porter is involved) = P(porter is sender) + P(porter is reciever) - P(porter is both)
+    # P(Porter is both)  = P(porter is sender) * P(porter is reciever)
