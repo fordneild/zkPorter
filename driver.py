@@ -68,7 +68,7 @@ def simulateRollup(numPorters: int, numRollups: int, numTx: int, seed=123456):
     blocks_per_sec = float(1/13)
     gaslimit_per_block = float(12500000)
     trans_per_gasunit = float(1/1184)
-    amortized_blocks_per_sec = float(2.54)
+    amortized_blocks_per_sec = float(9.52)
 
     # get average number of transfers per block
     num_transfers = 0
