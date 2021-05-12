@@ -5,6 +5,7 @@ from Transaction import Transaction
 import random
 import numpy as np
 import matplotlib.pyplot as plt
+import sys
 
 
 def simulateRollup(numPorters: int, numRollups: int, numTx: int, seed=123456):
@@ -86,10 +87,18 @@ def simulateRollup(numPorters: int, numRollups: int, numTx: int, seed=123456):
 
 
 if __name__ == "__main__":
-
+    
     # user inputs
-    TOT_NUM_ACCOUNTS = 10000
-    NUM_TXS = 5000
+    args = sys.argv[1:]
+    if(len(args) == 0):
+        TOT_NUM_ACCOUNTS = 10000
+        NUM_TXS = 5000
+    if(len(args) == 1):
+        TOT_NUM_ACCOUNTS = int(args[0])
+        NUM_TXS = 5000
+    else:
+        TOT_NUM_ACCOUNTS = int(args[0])
+        NUM_TXS = int(args[1])
 
     # initialize the network proportions of each account type
     NUM_PORTERS = [int(TOT_NUM_ACCOUNTS * 0), int(TOT_NUM_ACCOUNTS * .10), int(TOT_NUM_ACCOUNTS * .20),
