@@ -1,8 +1,10 @@
 from typing import List
 from Account import Account
+import string
+import hashlib
+from merklelib import MerkleTree
 
 
 def getPorterStateRoot(porters: List[Account]) -> str:
-    # for i in range(len(porters)):
-    # TODO
-    return "abcdefg"
+    tree = MerkleTree(porters)
+    return tree.merkle_root

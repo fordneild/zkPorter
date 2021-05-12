@@ -46,17 +46,32 @@ def simulateRollup(numPorters: int, numRollups: int, numTx: int, seed=123456):
         # sender gifts random amount of their money away
         amount = int(random.random() * sender.value)
         tx = Transaction(sender, receiver, amount)
+
+        # execute account value changes
+        sender_id = int(sender.id[6:])
+        if sender.isPorter:
+            porterAccounts[sender_id].deductValue(amount)
+        else:
+            rollupAccounts[sender_id].deductValue(amount)
+
+        receiver_id = int(receiver.id[6:])
+        if receiver.isPorter:
+            porterAccounts[receiver_id].addValue(amount)
+        else:
+            rollupAccounts[receiver_id].addValue(amount)
+
         # if they are both porters
-        # TODO only for last porter-to-porter do we need to recompute
         if sender.isPorter and receiver.isPorter:
             num_porter_txs = num_porter_txs + 1
-            block.setPorterStateRoot(porterAccounts)
         else:
             if block.getCapacity() == 0:
+                block.setPorterStateRoot(porterAccounts)
                 blocks.append(block)
                 block = Block(porterAccounts)
             block.addTransaction(tx)
+    block.setPorterStateRoot(porterAccounts)
     blocks.append(block)
+
     # print the block after we append it?
     # print(block)
 
@@ -92,9 +107,7 @@ if __name__ == "__main__":
     
     # user inputs
     args = sys.argv[1:]
-    print(len(args))
     if len(args) == 0:
-        print('triggered')
         TOT_NUM_ACCOUNTS = 10000
         NUM_TXS = 5000
     elif len(args) == 1:
