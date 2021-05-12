@@ -58,7 +58,7 @@ def simulateRollup(numPorters: int, numRollups: int, numTx: int, seed=123456):
             block.addTransaction(tx)
     blocks.append(block)
     # print the block after we append it?
-    print(block)
+    # print(block)
 
     # Output data
     porter_percentage = (numPorters / (numRollups + numPorters)) * 100
@@ -92,10 +92,12 @@ if __name__ == "__main__":
     
     # user inputs
     args = sys.argv[1:]
-    if(len(args) == 0):
+    print(len(args))
+    if len(args) == 0:
+        print('triggered')
         TOT_NUM_ACCOUNTS = 10000
         NUM_TXS = 5000
-    if(len(args) == 1):
+    elif len(args) == 1:
         TOT_NUM_ACCOUNTS = int(args[0])
         NUM_TXS = 5000
     else:
@@ -144,6 +146,3 @@ if __name__ == "__main__":
     plt.ylabel('Transactions per second (thousands)')
     plt.grid()
     plt.show()
-
-    # P(A porter is involved) = P(porter is sender) + P(porter is receiver) - P(porter is both)
-    # P(Porter is both)  = P(porter is sender) * P(porter is receiver)
