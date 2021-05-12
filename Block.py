@@ -10,7 +10,7 @@ class Block:
 
     def __init__(self, porters: List[Account]):
         self.porterStateRoot = getPorterStateRoot(porters)
-        self.transactions = []
+        self.transactions: List[Transaction] = []
 
     def addTransaction(self, transaction: Transaction):
         if len(self.transactions) > self.MAX_NUM_TRANSACTION:
@@ -23,3 +23,9 @@ class Block:
 
     def setPorterStateRoot(self, porters: List[Account]):
         self.porterStateRoot = getPorterStateRoot(porters)
+    
+    def __str__(self) -> str:
+        return "Block------------------------\n"+'porterStateRoot: '+ str(self.porterStateRoot) + '\ntransactions:'+ str(self.transactions)+"\n-----------------------------"
+    
+    def __repr__(self) -> str:
+        return self.__str__()

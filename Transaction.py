@@ -1,3 +1,4 @@
+from typing import List
 from Account import Account
 
 
@@ -15,6 +16,9 @@ class Transaction:
         else:
             self.sender.value -= amount
             self.receiver.value += amount
+    
+    def __str__(self) -> str:
+        return "\n"+self.sender.id + "-$"+ str(self.amount) +"->"+ self.receiver.id
 
-    # def print():
-    #     print()
+    def __repr__(self) -> str:
+        return self.__str__()

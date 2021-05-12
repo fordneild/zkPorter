@@ -57,6 +57,8 @@ def simulateRollup(numPorters: int, numRollups: int, numTx: int, seed=123456):
                 block = Block(porterAccounts)
             block.addTransaction(tx)
     blocks.append(block)
+    # print the block after we append it?
+    print(block)
 
     # Output data
     porter_percentage = (numPorters / (numRollups + numPorters)) * 100
