@@ -60,8 +60,8 @@ def simulateRollup(numPorters: int, numRollups: int, numTx: int, seed=123456):
     # Output data
     porter_percentage = (numPorters / (numRollups + numPorters)) * 100
     # print(str(len(blocks)))
-    # print(str(len(blocks)) + " blocks required for " +
-    # str(numTx) + " transaction(s) when " + str(porter_percentage) + "% of accounts are zkPorters.")
+    print(str(len(blocks)) + " blocks required for "
+          + str(numTx) + " transaction(s) when " + str(porter_percentage) + "% of accounts are zkPorters.")
 
     # Known variables for real-world transfers
     # blocks_per_sec = float(1/13)
@@ -79,8 +79,8 @@ def simulateRollup(numPorters: int, numRollups: int, numTx: int, seed=123456):
 
     tps = (avg_num_transfers_per_block + avg_num_porter_txs) * amortized_blocks_per_sec
     # print(str(np.round(tps, 2)))
-    # print(str(np.round(tps, 2)) + " transactions per second when " + str(porter_percentage) +
-    # "% of accounts are zkPorters.")
+    print(str(np.round(tps, 2)) + " transactions per second when " + str(porter_percentage)
+          + "% of accounts are zkPorters.")
 
     return [len(blocks), np.round(tps, 2), porter_percentage]
 
