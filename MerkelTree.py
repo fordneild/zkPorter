@@ -5,6 +5,6 @@ import hashlib
 from merklelib import MerkleTree
 
 
-def getPorterStateRoot(porters: List[Account]) -> str:
-    tree = MerkleTree(porters)
+def getStateRoot(accounts: List[Account]) -> str:
+    tree = MerkleTree(accounts)
     return tree.merkle_root

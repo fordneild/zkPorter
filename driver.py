@@ -27,7 +27,7 @@ def simulateRollup(numPorters: int, numRollups: int, numTx: int, seed=123456):
     random.seed(seed)
     # generate transactions
     blocks: List[Block] = []
-    block = Block(porterAccounts)
+    block = Block(porterAccounts, rollupAccounts)
     num_porter_txs = 0
     for t in range(numTx):
         """
@@ -55,10 +55,13 @@ def simulateRollup(numPorters: int, numRollups: int, numTx: int, seed=123456):
         else:
             if block.getCapacity() == 0:
                 block.setPorterStateRoot(porterAccounts)
+                block.setRollupStateRoot(rollupAccounts)
                 blocks.append(block)
-                block = Block(porterAccounts)
+                print(block)
+                block = Block(porterAccounts, rollupAccounts)
             block.addTransaction(tx)
     block.setPorterStateRoot(porterAccounts)
+    block.setRollupStateRoot(rollupAccounts)
     blocks.append(block)
 
 
