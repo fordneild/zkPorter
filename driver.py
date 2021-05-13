@@ -15,12 +15,14 @@ def simulateRollup(numPorters: int, numRollups: int, numTx: int, seed=123456):
     all_accounts: List[Account] = []
     # generate zk-porter accounts
     for i in range(numPorters):
-        porterAccounts.append(Account("porter" + str(i), isPorter=True))
-        all_accounts.append(Account("porter" + str(i), isPorter=True))
+        porter = Account("porter" + str(i), isPorter=True)
+        porterAccounts.append(porter)
+        all_accounts.append(porter)
     # generate zk-rollup accounts
     for i in range(numRollups):
-        rollupAccounts.append(Account("rollup" + str(i), isPorter=False))
-        all_accounts.append(Account("rollup" + str(i), isPorter=False))
+        rollup = Account("rollup" + str(i), isPorter=False)
+        rollupAccounts.append(rollup)
+        all_accounts.append(rollup)
 
     random.seed(seed)
     # generate transactions
@@ -47,19 +49,6 @@ def simulateRollup(numPorters: int, numRollups: int, numTx: int, seed=123456):
         amount = int(random.random() * sender.value)
         tx = Transaction(sender, receiver, amount)
 
-        # execute account value changes
-        sender_id = int(sender.id[6:])
-        if sender.isPorter:
-            porterAccounts[sender_id].deductValue(amount)
-        else:
-            rollupAccounts[sender_id].deductValue(amount)
-
-        receiver_id = int(receiver.id[6:])
-        if receiver.isPorter:
-            porterAccounts[receiver_id].addValue(amount)
-        else:
-            rollupAccounts[receiver_id].addValue(amount)
-
         # if they are both porters
         if sender.isPorter and receiver.isPorter:
             num_porter_txs = num_porter_txs + 1
@@ -71,6 +60,7 @@ def simulateRollup(numPorters: int, numRollups: int, numTx: int, seed=123456):
             block.addTransaction(tx)
     block.setPorterStateRoot(porterAccounts)
     blocks.append(block)
+
 
     # print the block after we append it?
     # print(block)
